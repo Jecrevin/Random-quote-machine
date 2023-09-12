@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#background {
+  transition: background-color 1s;
+}
+
+#quote-box {
+  width: 450px;
+  transition: height 1s;
+}
+
+#new-quote {
+  font-size: 0.1rem;
+  transition: background-color 1s;
+}
+
+#text,
+#author {
+  transition: all 0.5s;
+}
+
+#web-author {
+  font-size: 0.1rem;
+}
+
+#tweet-quote {
+  transition: color 1s;
+  font-size: 1.7rem;
+}
