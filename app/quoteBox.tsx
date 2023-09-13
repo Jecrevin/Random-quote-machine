@@ -1,39 +1,41 @@
 'use client'
 
-import { useState } from "react";
-import Link from "next/link";
-import { getRamdomQuote, getRandomColor } from "./source";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Work_Sans } from "next/font/google";
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { getRamdomQuote, getRandomColor } from './source'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquareTwitter } from '@fortawesome/free-brands-svg-icons'
+import { Work_Sans } from 'next/font/google'
 
 const workSans = Work_Sans({
-  subsets: ["latin"]
+  subsets: ['latin']
 })
 
-export default function QuoteBox(
+export default function QuoteBox (
   props: { quote: string, author: string, quotes: Array<{ quote: string, author: string }>, initColor: string }
-) {
-  const [quote, setQuote] = useState(props.quote);
-  const [author, setAuthor] = useState(props.author);
+): JSX.Element {
+  const [quote, setQuote] = useState(props.quote)
+  const [author, setAuthor] = useState(props.author)
 
-  function getNewQuote() {
-    const text = document.getElementById("text")!;
-    text.style.color = "transparent";
-    const author = document.getElementById("author")!;
-    author.style.color = "transparent";
+  function getNewQuote (): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const text = document.getElementById('text')!
+    text.style.color = 'transparent'
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const author = document.getElementById('author')!
+    author.style.color = 'transparent'
 
-    const nextColor = getRandomColor();
+    const nextColor = getRandomColor()
     setTimeout(() => {
-      const newQuote = getRamdomQuote(props.quotes);
-      setQuote(newQuote[0]);
-      setAuthor(newQuote[1]);
-      setColorById("text", nextColor);
-      setColorById("author", nextColor);
-    }, 500);
-    setColorById("tweet-quote", nextColor);
-    setBackgroundColorById("new-quote", nextColor);
-    setBackgroundColorById("background", nextColor);
+      const newQuote = getRamdomQuote(props.quotes)
+      setQuote(newQuote[0])
+      setAuthor(newQuote[1])
+      setColorById('text', nextColor)
+      setColorById('author', nextColor)
+    }, 500)
+    setColorById('tweet-quote', nextColor)
+    setBackgroundColorById('new-quote', nextColor)
+    setBackgroundColorById('background', nextColor)
   }
 
   return (
@@ -47,12 +49,12 @@ export default function QuoteBox(
       </p>
       <div className="flex justify-between mt-4 items-center">
         <span>
-          <Link id="tweet-quote" href={"https://twitter.com/intent/tweet"} title="tweet this quote!"
+          <Link id="tweet-quote" href={'https://twitter.com/intent/tweet'} title="tweet this quote!"
             style={{ color: props.initColor }} className="flex items-center">
-            <FontAwesomeIcon icon={faSquareTwitter} style={{ color: "inherit" }} />
+            <FontAwesomeIcon icon={faSquareTwitter} style={{ color: 'inherit' }} />
           </Link>
         </span>
-        <button className={"rounded px-2 py-1 text-white" + ' ' + workSans.className}
+        <button className={'rounded px-2 py-1 text-white' + ' ' + workSans.className}
           id="new-quote" onClick={getNewQuote} style={{ backgroundColor: props.initColor }}>
           New quote
         </button>
@@ -61,12 +63,14 @@ export default function QuoteBox(
   )
 }
 
-export function setColorById(id: string, color: string) {
-  if (!document.getElementById(id)) return;
-  document.getElementById(id)!.style.color = color;
+export function setColorById (id: string, color: string): void {
+  const element = document.getElementById(id)
+  if (element == null) return
+  element.style.color = color
 }
 
-export function setBackgroundColorById(id: string, color: string) {
-  if (!document.getElementById(id)) return;
-  document.getElementById(id)!.style.backgroundColor = color;
+export function setBackgroundColorById (id: string, color: string): void {
+  const element = document.getElementById(id)
+  if (element == null) return
+  element.style.backgroundColor = color
 }
