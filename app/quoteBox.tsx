@@ -47,7 +47,7 @@ export default function QuoteBox(
       </p>
       <div className="flex justify-between mt-4 items-center">
         <span>
-          <Link id="tweet-quote" href={"https://twitter.com/intent/tweet"}
+          <Link id="tweet-quote" href={"https://twitter.com/intent/tweet"} title="tweet this quote!"
             style={{ color: props.initColor }} className="flex items-center">
             <FontAwesomeIcon icon={faSquareTwitter} style={{ color: "inherit" }} />
           </Link>
